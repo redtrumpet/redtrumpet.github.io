@@ -2,4 +2,9 @@
 Das war echt der Wahnsinn, als ich hier raus bin und so...
 >Fenster und so...
 
-Das ist halt echt wahr... Hoffentlich wird diese Zeile lang genug :-D Dann hab ich vielleicht sogar einen Zeilenumruch drin, was halt echt wirklich der Wahnsinn wäre.
+Das ist halt echt wahr... Hoffentlich wird diese Zeile lang genug :-D Dann hab ich vielleicht sogar einen Zeilenumruch drin, was halt echt wirklich der Wahnsinn wäre. Jo!
+
+![Blume](images/Blume.jpg)
+
+
+Hier kommt mal noch was Text.

@@ -14,10 +14,14 @@ header {
     margin: 30px 0 30px;
 }
 main {
-    max-width: 650px;
+    width: 650px;
 }
 nav {
     max-width: 200px;
+}
+article img {
+    max-width: 100%;
+    height: auto;
 }
 #content {
     display: -webkit-flex;
@@ -60,13 +64,14 @@ footer > div > form{
 @media (max-width: 480px) {
     #main {
         margin-left: 0;
+        width: 100%;
     }
     #content {
         -webkit-flex-direction: column;
         flex-direction: column;
     }
     #nav_well {
-        width: 100%;
+        width: 100vw;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         -ms-box-sizing: border-box;
@@ -74,6 +79,7 @@ footer > div > form{
         position: static;
     }
     #footer {
+        -webkit-flex-direction: column;
         flex-direction: column;
     }
     nav {
