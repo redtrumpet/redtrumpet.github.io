@@ -1,0 +1,6 @@
+<article class="well" ng-repeat="article in articles | orderBy:predicate">
+<small class="pull-right">{{article.getDate().toLocaleString()}}</small>
+<div ng-bind-html-unsafe="article.html">
+    
+</div>
+</article>

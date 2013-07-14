@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="de" ng-app="blog">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="JS.Markdown.Converter/Markdown.Converter.js"></script>
+    <script src="blog.js"></script>
+</head>
+<body>
+    <header>Blog von Jonas</header>
+    <div id="content">
+        <div>
+        <nav id="nav_well" class="nav nav-list well" style="padding: 8px 15px;">
+            <li class="nav-header">Blog</li>
+            <li class="active"><a href="/Blog/">Blog</a></li>
+            <li><a href="/ich.php">&Uuml;ber mich</a></li>
+            <li><a href="casadomenor.php">Meine Einsatzstelle</a></li>
+            <li class="nav-header">Administration</li>
+            <li><a href="#">neuer Eintrag</a></li>
+        </nav>
+        </div>
+        <main id="main" ng-view>
+        </main>
+    </div>
+    <footer id="footer">
+        <div>
+            Dank an
+            <ul>
+                <li><a href="http://bja-fachstelle.de">Bistum Mainz / SDFV</a></li>
+                <li>alle anderen!</li>
+            </ul>
+        </div>
+        <div>
+            Gebaut mit:
+            <ul>
+                <li><a href="http://bootswatch.com/">Bootswatch</a> <a href="http://bootswatch.com/readable/">Readable</a></li>
+                <li><a href="http://brackets.io">Brackets</a></li>
+                <li>PHP</li>
+                <li>HTML, CSS, JS</li>
+            </ul>
+        </div>
+        <div>
+            Erfordert Firefox 22+ oder einen vergleichbaren Browser (z.B. Chrome 28+)
+        </div>
+    </footer>
+</body>
+</html>
