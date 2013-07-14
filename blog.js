@@ -1,4 +1,31 @@
 /*global window, document, XMLHttpRequest, console, angular, Markdown*/
+
+function NavCtrl($scope) {
+    'use strict';
+    $scope.nav_items = [{
+        text: 'Blog',
+        classes: ['active', 'asdf'],
+        url: '#'
+    }, {
+        text: 'Über mich',
+        classes: [],
+        url: '#/singlePage/ich.md'
+    }, {
+        text: 'Meine Einsatzstelle',
+        classes: [],
+        url: '#/singlePage/casadomenor.md'
+    }];
+    $scope.clicked = function (clicked_item) {
+        var i, item;
+        for (i = 0; i < $scope.nav_items.length; i += 1) {
+            item = $scope.nav_items[i];
+            item.classes.splice(item.classes.indexOf('active'), 1);
+        }
+        if (clicked_item.classes.indexOf('active') === -1) {
+            clicked_item.classes.push('active');
+        }
+    };
+}
 function BlogCtrl($scope, MDConverter) {
     'use strict';
     $scope.articles = [];

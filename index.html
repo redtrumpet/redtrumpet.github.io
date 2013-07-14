@@ -14,13 +14,9 @@
     <header>Blog von Jonas</header>
     <div id="content">
         <div>
-        <nav id="nav_well" class="nav nav-list well" style="padding: 8px 15px;">
+        <nav id="nav_well" class="nav nav-list well" style="padding: 8px 15px;" ng-controller="NavCtrl">
             <li class="nav-header">Blog</li>
-            <li class="active"><a href="/Blog/">Blog</a></li>
-            <li><a href="/ich.php">&Uuml;ber mich</a></li>
-            <li><a href="casadomenor.php">Meine Einsatzstelle</a></li>
-            <li class="nav-header">Administration</li>
-            <li><a href="#">neuer Eintrag</a></li>
+            <li ng-class="item.classes" ng-click="clicked(item)" ng-repeat="item in nav_items"><a href="{{item.url}}">{{item.text}}</a></li>
         </nav>
         </div>
         <main id="main" ng-view>
