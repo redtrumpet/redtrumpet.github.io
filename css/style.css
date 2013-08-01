@@ -4,7 +4,6 @@ body {
     -ms-hyphens: auto;
     hyphens: auto;
 }
-
 header {
     display: block;
     text-align: center;
@@ -16,11 +15,14 @@ header {
 main {
     width: 650px;
 }
+main p {
+    text-align: justify;
+}
 nav {
     max-width: 200px;
 }
 article img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
 }
 #content {

@@ -26,7 +26,7 @@ function NavCtrl($scope) {
         }
     };
 }
-function BlogCtrl($scope, MDConverter) {
+function BlogCtrl($scope, $http, MDConverter) {
     'use strict';
     $scope.articles = [];
     var httpRequest,
@@ -37,29 +37,21 @@ function BlogCtrl($scope, MDConverter) {
             }
         };
     $scope.predicate = '-timestamp';
-    function processEntry(entry, event) {
+    function processEntry(entry, data, status, headers, config) {
         var proto = '__proto__';
-        entry.html = MDConverter.makeHtml(event.target.responseText);
+        entry.html = MDConverter.makeHtml(data);
         entry[proto] = articleProto;
-        $scope.$apply(function () {
-            $scope.articles.push(entry);
-        });
+        $scope.articles.push(entry);
     }
-    function processEntries(event) {
-        var entries = JSON.parse(event.target.responseText),
+    function processEntries(data, status, headers, config) {
+        var entries = data,
             i,
             httpRequest;
         for (i = 0; i < entries.length; i += 1) {
-            httpRequest = new XMLHttpRequest();
-            httpRequest.addEventListener('load', processEntry.bind({}, entries[i]));
-            httpRequest.open('GET', 'entries/' + entries[i].file);
-            httpRequest.send(null);
+            $http.get('entries/' + entries[i].file).success(processEntry.bind({}, entries[i]));
         }
     }
-    httpRequest = new XMLHttpRequest();
-    httpRequest.addEventListener('load', processEntries);
-    httpRequest.open('GET', 'entries/entries.json');
-    httpRequest.send(null);
+    $http.get('entries/entries.json').success(processEntries);
 }
 
 function SingleCtrl($scope, MDConverter, $routeParams) {
@@ -77,6 +69,8 @@ function SingleCtrl($scope, MDConverter, $routeParams) {
     httpRequest.open('GET', 'singlePages/' + $routeParams.pageName);
     httpRequest.send(null);
 }
+
+                                    /*Module*/
 angular.module('blog', []).
     factory('MDConverter', function () {
         'use strict';
@@ -87,15 +81,14 @@ angular.module('blog', []).
         $routeProvider.when('/', {controller: BlogCtrl, templateUrl: 'articles.html'})
             .when('/singlePage/:pageName', {controller: SingleCtrl, templateUrl: 'single.html'});
     });
-    
-/*Navbar scrolling*/
+
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
     window.addEventListener('scroll', function (evt) {
         var nav_well = document.getElementById('nav_well');
-        if (window.pageYOffset >= 130) {
+        if (window.pageYOffset >= 130 && nav_well.style.position !== 'fixed') {
             nav_well.style.top = window.pageYOffset - 130 + 'px';
-        } else if (nav_well.style.top !== '0px') {
+        } else if (window.pageYOffset < 130) {
             nav_well.style.top = '0px';
         }
     });
