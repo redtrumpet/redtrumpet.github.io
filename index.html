@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="JSMarkdownConverter/Markdown.Converter.js"></script>
@@ -13,13 +14,15 @@
 </head>
 <body>
     <header>Blog von Jonas</header>
-    <div id="content">
+    <div id="content" ng-controller="NavCtrl">
         <div id="placeholder">
-            <nav id="nav_well" class="nav nav-list well" style="padding: 8px 15px;" ng-controller="NavCtrl">
+            <nav id="nav_well" class="nav nav-list well" style="padding: 8px 15px;">
                 <li class="nav-header">Seiten</li>
-                <li ng-class="item.classes" ng-click="clicked(item)" ng-repeat="item in nav_items"><a href="{{item.url}}">{{item.text}}</a></li>
-                <li class="nav-header">neue Eintr&auml;ge</li>
-                <li><a href="">Erster Tag</a></li>
+                <li ng-class="item.classes" ng-click="clicked(item)" ng-repeat="item in nav_items | orderBy:predicate">
+                    <a href="{{item.url}}">{{item.text}}</a>
+                </li>
+                <li ng-show="articles.length > 0" class="nav-header">neue Eintr&auml;ge</li>
+                <li ng-repeat="art in articles.filter(isNew) | orderBy:predicate"><a href="#/single/blog/{{art.file}}">{{art.title}}</a></li>
             </nav>
         </div>
         <main id="main" ng-view>

@@ -4,31 +4,32 @@ function NavCtrl($scope) {
     'use strict';
     $scope.nav_items = [{
         text: 'Blog',
-        classes: ['active', 'asdf'],
+        classes: ['active'],
         url: '#'
     }, {
         text: 'Über mich',
         classes: [],
-        url: '#/singlePage/ich.md'
+        url: '#/single/page/ich.md'
     }, {
         text: 'Meine Einsatzstelle',
         classes: [],
-        url: '#/singlePage/casadomenor.md'
+        url: '#/single/page/casadomenor.md'
     }];
+    $scope.articles = [];
     $scope.clicked = function (clicked_item) {
         var i, item;
         for (i = 0; i < $scope.nav_items.length; i += 1) {
             item = $scope.nav_items[i];
             item.classes.splice(item.classes.indexOf('active'), 1);
         }
-        if (clicked_item.classes.indexOf('active') === -1) {
-            clicked_item.classes.push('active');
-        }
+        clicked_item.classes.push((clicked_item.classes.indexOf('active') === -1) ? 'active' : undefined);
+    };
+    $scope.isNew = function (article) {
+        return (article.tags.indexOf('new') !== -1) ? true : false;
     };
 }
 function BlogCtrl($scope, $http, MDConverter) {
     'use strict';
-    $scope.articles = [];
     var httpRequest,
         articleProto = {
             timestamp: 0,
@@ -37,6 +38,7 @@ function BlogCtrl($scope, $http, MDConverter) {
             }
         };
     $scope.predicate = '-timestamp';
+    
     function processEntry(entry, data, status, headers, config) {
         var proto = '__proto__';
         entry.html = MDConverter.makeHtml(data);
@@ -47,8 +49,10 @@ function BlogCtrl($scope, $http, MDConverter) {
         var entries = data,
             i,
             httpRequest;
-        for (i = 0; i < entries.length; i += 1) {
-            $http.get('entries/' + entries[i].file).success(processEntry.bind({}, entries[i]));
+        if ($scope.articles.length === 0) {
+            for (i = 0; i < entries.length; i += 1) {
+                $http.get('entries/' + entries[i].file).success(processEntry.bind({}, entries[i]));
+            }
         }
     }
     $http.get('entries/entries.json').success(processEntries);
@@ -56,8 +60,13 @@ function BlogCtrl($scope, $http, MDConverter) {
 
 function SingleCtrl($scope, MDConverter, $routeParams) {
     'use strict';
-    var httpRequest;
+    var httpRequest, dir;
     $scope.article = {};
+    if ($routeParams.type === 'blog') {
+        dir = 'entries';
+    } else if ($routeParams.type === 'page') {
+        dir = 'singlePages';
+    }
     function processPage(event) {
         var md = event.target.responseText;
         $scope.$apply(function () {
@@ -66,7 +75,7 @@ function SingleCtrl($scope, MDConverter, $routeParams) {
     }
     httpRequest = new XMLHttpRequest();
     httpRequest.addEventListener('load', processPage);
-    httpRequest.open('GET', 'singlePages/' + $routeParams.pageName);
+    httpRequest.open('GET', dir + '/' + $routeParams.entry);
     httpRequest.send(null);
 }
 
@@ -79,7 +88,7 @@ angular.module('blog', []).
     config(function ($routeProvider) {
         'use strict';
         $routeProvider.when('/', {controller: BlogCtrl, templateUrl: 'articles.html'})
-            .when('/singlePage/:pageName', {controller: SingleCtrl, templateUrl: 'single.html'});
+            .when('/single/:type/:entry', {controller: SingleCtrl, templateUrl: 'single.html'});
     });
 
 window.addEventListener('DOMContentLoaded', function () {
