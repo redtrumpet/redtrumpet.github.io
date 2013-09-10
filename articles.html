@@ -1,6 +1,17 @@
-<article class="well" ng-repeat="article in articles | orderBy:predicate">
-<small class="pull-right">{{article.getDate().toLocaleString()}}</small>
-<div ng-bind-html-unsafe="article.html">
-    
-</div>
+<article class="panel panel-default" ng-repeat="article in articles | orderBy:predicate | extractPage:page:page_length">
+    <div class="panel-body">
+        <div class="pull-right">
+            <small>{{article.getDate() | date:'dd.MM.yyyy HH:mm'}}</small>
+        </div>
+        <div class="article_text" ng-bind-html-unsafe="article.html"></div>
+        <div class="pull-right">
+            <strong>Tags:</strong>
+            <a class="tag" ng-repeat="tag in article.tags">{{tag}}</a>
+        </div>
+    </div>
 </article>
+<ul class="pagination" ng-show="page_count >= page_length">
+    <li ng-class="{disabled: isPage(0)}"><a href="#/{{getLinkNum('prev')}}" ng-disabled="isPage(0)">&laquo;</a></li>
+    <li ng-repeat="item in getNumArray(page_count)" ng-class="{active: isPage($index)}"><a href="#/{{$index}}">{{$index + 1}}</a></li>
+    <li ng-class="{disabled: isPage(page_count - 1)}"><a href="#/{{getLinkNum('next')}}">&raquo;</a></li>
+</ul>

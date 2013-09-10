@@ -3,51 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog</title>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script src="JSMarkdownConverter/Markdown.Converter.js"></script>
-    <script src="blog.js"></script>
+    <!--<link rel="stylesheet" href="/shared/bootstrap/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>Blog von Jonas</header>
-    <div id="content" ng-controller="NavCtrl">
-        <div id="placeholder">
-            <nav id="nav_well" class="nav nav-list well" style="padding: 8px 15px;">
-                <li class="nav-header">Seiten</li>
-                <li ng-class="item.classes" ng-click="clicked(item)" ng-repeat="item in nav_items | orderBy:predicate">
-                    <a href="{{item.url}}">{{item.text}}</a>
-                </li>
-                <li ng-show="articles.length > 0" class="nav-header">neue Eintr&auml;ge</li>
-                <li ng-repeat="art in articles.filter(isNew) | orderBy:predicate"><a href="#/single/blog/{{art.file}}">{{art.title}}</a></li>
-            </nav>
+    <div id="content" class="container" ng-controller="NavCtrl">
+        <header class="page-header">
+            <h1>Jonas in Brasilien <small>Ein Jahr lang</small></h1>
+        </header>
+        <div class="row">
+            <div class="col-sm-3 col-md-3 col-lg-3 col-lg-offset-1">
+                <nav id="nav_well" class="list-group" data-spy="affix" data-offset-top="134" data-offset-bottom="225">
+                    <a ng-class="{active: isActive(item)}" ng-repeat="item in nav_items | orderBy:predicate"
+                        class="list-group-item" href="{{item.url}}">
+                        {{item.text}}
+                    </a>
+                </nav>
+                <div ng-include src="template.url"></div>
+            </div>
+            <main id="main" class="col-sm-9 col-md-8 col-lg-7" ng-view>
+            </main>
         </div>
-        <main id="main" ng-view>
-        </main>
     </div>
-    <footer id="footer">
-        <div>
-            Dank an
-            <ul>
-                <li><a href="http://bja-fachstelle.de">Bistum Mainz / SDFV</a></li>
-                <li>alle anderen!</li>
-            </ul>
-        </div>
-        <div>
-            Gebaut mit:
-            <ul>
-                <li><a href="http://bootswatch.com/">Bootswatch</a> <a href="http://bootswatch.com/readable/">Readable</a></li>
-                <li><a href="http://brackets.io">Brackets</a></li>
-                <li>HTML, CSS, JS</li>
-                <li><a href="http://angularjs.org/">AngularJS</a></li>
-            </ul>
-        </div>
-        <div>
-            Erfordert Firefox 22+ oder einen vergleichbaren Browser (z.B. Chrome 28+)
+    <footer id="footer" class="well">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 col-lg-offset-2">
+                    Dank an
+                    <ul>
+                        <li><a href="http://bja-fachstelle.de">Bistum Mainz / SDFV</a></li>
+                        <li>alle anderen!</li>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                    Gebaut mit:
+                    <ul>
+                        <li><a href="http://getbootstrap.com">Twitter Bootstrap</a></li>
+                        <li><a href="http://bootswatch.com/">Bootswatch</a> <a href="http://bootswatch.com/readable/">Readable</a></li>
+                        <li><a href="http://brackets.io">Brackets</a></li>
+                        <li>HTML, CSS, JS</li>
+                        <li><a href="http://angularjs.org/">AngularJS</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/JSMarkdownConverter/Markdown.Converter.js"></script>
+    <script src="js/blog.js"></script>
 </body>
 </html>

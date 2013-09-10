@@ -1,2 +1,6 @@
-<article class="well" ng-bind-html-unsafe="article.html">    <!-- "article.html" does not refer to a html-file but to a object-property -->
+<article class="panel panel-default">
+    <div class="panel-body">
+        <small class="pull-right">{{article.getDate().toLocaleString()}}</small>
+        <div ng-bind-html-unsafe="article.html"></div>
+    </div>
 </article>

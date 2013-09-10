@@ -1,4 +1,4 @@
 redtrumpet.github.io
 ====================
 
-My Blog
+A simply, git-based blog for my voluntary year in Brasil.
