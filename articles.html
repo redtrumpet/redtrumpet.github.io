@@ -1,9 +1,12 @@
 <article class="panel panel-default" ng-repeat="article in articles | orderBy:predicate | extractPage:page:page_length">
     <div class="panel-body">
         <div class="pull-right">
-            <small>{{article.getDate() | date:'dd.MM.yyyy HH:mm'}}</small>
+            <small>{{article.getDate() | date:'MMMM yyyy'}}</small>
         </div>
-        <div class="article_text" ng-bind-html-unsafe="article.html"></div>
+        <div class="article_text text-justify" ng-bind-html-unsafe="article.html"></div>
+        <div class="pull-left">
+            <a href="entries/pdf/{{article.pdf}}">Download</a>
+        </div>
         <div class="pull-right">
             <strong>Tags:</strong>
             <a class="tag" ng-repeat="tag in article.tags">{{tag}}</a>

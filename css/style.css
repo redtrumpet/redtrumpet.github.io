@@ -13,6 +13,27 @@ body {
 .tag:after {
     content: ' ';
 }
+.text-justify {
+    text-align: justify;
+}
+.text-justify h1{
+    text-align: left;
+}
+.text-justify h2{
+    text-align: left;
+}
+.text-justify h3{
+    text-align: left;
+}
+.text-justify h4{
+    text-align: left;
+}
+.text-justify h5{
+    text-align: left;
+}
+.text-justify h6{
+    text-align: left;
+}
 #content {
     min-height: 100vh;
     padding: 0 0 200px;
@@ -22,6 +43,9 @@ body {
     width: 100%;
     height: 200px;
     margin-bottom: 0;
+}
+img {
+    width: 100%;
 }
 @media (min-width: 768px) {
     .affix {

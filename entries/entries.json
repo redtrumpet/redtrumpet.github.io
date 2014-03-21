@@ -4,5 +4,17 @@
         "tags": ["deutschland"],
         "timestamp": 1378840985000,
         "title": "Endlich"
+    }, {
+        "file": "mon_jan.md",
+        "tags": ["brasilien", "bolivien"],
+        "timestamp": 1388541600000,
+        "title": "Monatsbericht Januar",
+        "pdf": "mon_jan.pdf"
+    }, {
+        "file": "mon_feb.md",
+        "tags": ["brasilien"],
+        "timestamp": 1391220000000,
+        "title": "Monatsbericht Februar",
+        "pdf": "mon_feb.pdf"
     }
 ]
