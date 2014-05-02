@@ -4,7 +4,7 @@
             <small>{{article.getDate() | date:'MMMM yyyy'}}</small>
         </div>
         <div class="article_text text-justify" ng-bind-html-unsafe="article.html"></div>
-        <div class="pull-left">
+        <div class="pull-left" ng-show="article.pdf">
             <a href="entries/pdf/{{article.pdf}}">Download</a>
         </div>
         <div class="pull-right">
@@ -13,7 +13,7 @@
         </div>
     </div>
 </article>
-<ul class="pagination" ng-show="page_count >= page_length">
+<ul class="pagination" ng-show="page_count >= 2">
     <li ng-class="{disabled: isPage(0)}"><a href="#/{{getLinkNum('prev')}}" ng-disabled="isPage(0)">&laquo;</a></li>
     <li ng-repeat="item in getNumArray(page_count)" ng-class="{active: isPage($index)}"><a href="#/{{$index}}">{{$index + 1}}</a></li>
     <li ng-class="{disabled: isPage(page_count - 1)}"><a href="#/{{getLinkNum('next')}}">&raquo;</a></li>
