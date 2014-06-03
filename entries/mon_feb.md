@@ -32,7 +32,7 @@ Für mich ist dieses Foto etwas anderes. Es zeigt mir die Lebendigkeit und Dynam
 
 ## Zuwachs in Herbalife ##
 
-Diesen Monat sind fünf neue Kinder nach Casa Herbalife gekommen. Micaela ist schon etwas älter, ich schätze vier oder fünf. Joao Vitor, Ana Eloiza und Nicole sind glaube ich zwischen einem und zwei Jahren alt, dazu kam noch ein Neugeborener, ich glaube nur einen Monat alt. Damit sind in Casa Herbalife und 15 Babys und Kleinkinder untergebracht.
+Diesen Monat sind fünf neue Kinder nach Casa Herbalife gekommen. Micaela ist schon etwas älter, ich schätze vier oder fünf. Joao Vitor, Ana Eloiza und Nicole sind glaube ich zwischen einem und zwei Jahren alt, dazu kam noch ein Neugeborener, ich glaube nur einen Monat alt. Damit sind in Casa Herbalife nun 15 Babys und Kleinkinder untergebracht.
 
 ## Karneval in der CIDAH ##
 

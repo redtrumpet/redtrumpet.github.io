@@ -22,5 +22,10 @@
         "timestamp": 1393642800000,
         "title": "Monatsbericht März",
         "pdf": "mon_mar.pdf"
+    }, {
+        "file": "mon_apr.md",
+        "tags": ["brasilien"],
+        "timestamp": 1396321200000,
+        "title": "Monatsbericht April"
     }
 ]
